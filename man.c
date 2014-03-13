@@ -46,6 +46,7 @@
  * SUCH DAMAGE.
  */
 
+#include <sys/utsname.h>
 #include <sys/types.h>
 #include <sys/param.h>
 #include <sys/queue.h>
@@ -225,9 +226,13 @@ main(int argc, char *argv[])
 			err(1, NULL);
 		for (p = machine; *p; ++p)
 			*p = tolower(*p);
-	} else
-		machine = MACHINE;
+	} else {
+		struct utsname utsname;
 
+		if (uname(&utsname) == -1)
+			err(EXIT_FAILURE, "uname");
+		machine = utsname.machine;
+	}
 	append_subdirs(searchlist, machine);
 
 	/*
