@@ -63,14 +63,15 @@
 #include <errno.h>
 #include <limits.h>
 #include <pwd.h>
-#include <bsd/stdio.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <inttypes.h>
 
 #include "charclass.h"
 #include "glob.h"
+#include "compat.h"
 
 #define	DOLLAR		'$'
 #define	DOT		'.'
