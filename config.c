@@ -42,6 +42,7 @@
 
 #include "config.h"
 #include "pathnames.h"
+#include "compat.h"
 
 struct _head head;
 

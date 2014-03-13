@@ -57,16 +57,17 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <fnmatch.h>
-#include <glob.h>
 #include <signal.h>
 #include <stdio.h>
 #include <libgen.h>
-#include <bsd/stdlib.h>
-#include <bsd/string.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 #include "config.h"
 #include "pathnames.h"
+#include "glob.h"
+#include "compat.h"
 
 int f_all, f_where;
 static char gbuf[MAXPATHLEN * 2];
@@ -98,7 +99,7 @@ main(int argc, char *argv[])
 	glob_t pg;
 	size_t len;
 	int ch, f_cat, f_how, found;
-	const char *pager, *p_path;
+	const char *pager = NULL, *p_path;
 	char **ap, *cmd, *machine, *p, *p_add, *sflag;
 	char *conffile;
 
