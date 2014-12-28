@@ -33,6 +33,8 @@
  *	@(#)config.h	8.4 (Berkeley) 12/18/93
  */
 
+#include "queue.h"
+
 typedef struct _tag {
 	TAILQ_ENTRY(_tag) q;		/* Queue of tags. */
 

@@ -49,7 +49,6 @@
 #include <sys/utsname.h>
 #include <sys/types.h>
 #include <sys/param.h>
-#include <sys/queue.h>
 #include <sys/stat.h>
 
 #include <ctype.h>
@@ -68,6 +67,7 @@
 #include "pathnames.h"
 #include "glob.h"
 #include "compat.h"
+#include "queue.h"
 
 int f_all, f_where;
 static char gbuf[MAXPATHLEN * 2];

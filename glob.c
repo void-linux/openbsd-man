@@ -98,7 +98,7 @@
 #define	M_MASK		0xffff
 #define	M_ASCII		0x00ff
 
-typedef u_short Char;
+typedef unsigned short Char;
 
 #else
 
@@ -143,7 +143,7 @@ struct glob_path_stat {
 
 static int	 compare(const void *, const void *);
 static int	 compare_gps(const void *, const void *);
-static int	 g_Ctoc(const Char *, char *, u_int);
+static int	 g_Ctoc(const Char *, char *, unsigned int);
 static int	 g_lstat(Char *, struct stat *, glob_t *);
 static DIR	*g_opendir(Char *, glob_t *);
 static Char	*g_strchr(const Char *, int);
@@ -171,7 +171,7 @@ int
 glob(const char *pattern, int flags, int (*errfunc)(const char *, int),
     glob_t *pglob)
 {
-	const u_char *patnext;
+	const unsigned char *patnext;
 	int c;
 	Char *bufnext, *bufend, patbuf[PATH_MAX];
 	struct glob_lim limit = { 0, 0, 0 };
@@ -179,7 +179,7 @@ glob(const char *pattern, int flags, int (*errfunc)(const char *, int),
 	if (strnlen(pattern, PATH_MAX) == PATH_MAX)
 		return(GLOB_NOMATCH);
 
-	patnext = (u_char *) pattern;
+	patnext = (unsigned char *) pattern;
 	if (!(flags & GLOB_APPEND)) {
 		pglob->gl_pathc = 0;
 		pglob->gl_pathv = NULL;
@@ -725,7 +725,7 @@ glob3(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
 	else
 		readdirfunc = (struct dirent *(*)(void *))readdir;
 	while ((dp = (*readdirfunc)(dirp))) {
-		u_char *sc;
+		unsigned char *sc;
 		Char *dc;
 
 		if ((pglob->gl_flags & GLOB_LIMIT) &&
@@ -741,7 +741,7 @@ glob3(Char *pathbuf, Char *pathbuf_last, Char *pathend, Char *pathend_last,
 		if (dp->d_name[0] == DOT && *pattern != DOT)
 			continue;
 		dc = pathend;
-		sc = (u_char *) dp->d_name;
+		sc = (unsigned char *) dp->d_name;
 		while (dc < pathend_last && (*dc++ = *sc++) != EOS)
 			;
 		if (dc >= pathend_last) {
@@ -1023,7 +1023,7 @@ g_strchr(const Char *str, int ch)
 }
 
 static int
-g_Ctoc(const Char *str, char *buf, u_int len)
+g_Ctoc(const Char *str, char *buf, unsigned int len)
 {
 
 	while (len--) {

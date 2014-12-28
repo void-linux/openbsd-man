@@ -86,10 +86,16 @@ typedef struct {
 #define	GLOB_KEEPSTAT	0x4000	/* Retain stat data for paths in gl_statv. */
 #define GLOB_ABEND	GLOB_ABORTED /* backward compatibility */
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int	glob(const char *__restrict, int, int (*)(const char *, int),
 	    glob_t *__restrict);
 void	globfree(glob_t *);
-__END_DECLS
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* !_GLOB_H_ */
