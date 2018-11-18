@@ -2,7 +2,7 @@ PREFIX ?= /usr/local
 ETCDIR ?= $(PREFIX)/etc
 MANDIR ?= $(PREFIX)/share/man
 
-CFLAGS += -O2 -Wall -Werror
+CFLAGS += -O2
 SRCS = $(shell find -type f -name '*.c')
 OBJS = $(SRCS:.c=.o)
 
